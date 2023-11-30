@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.io.*;
 
 
-public class home {
+public class MainPro {
     public static String result;
     public static void main(String[] args) {
         new UserHome();
@@ -34,7 +34,7 @@ class UserHome {
                 if (xiuke.isSelected()) {
                     result=result+",2";
                 }
-                home.result=result;
+                MainPro.result=result;
                 new InnerPy();
             }
         });
@@ -61,7 +61,7 @@ class InnerPy {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream));
  
-            writer.println(home.result);
+            writer.println(MainPro.result);
             writer.flush();
             
             // 读取python的输出
