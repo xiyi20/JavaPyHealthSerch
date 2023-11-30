@@ -1,51 +1,45 @@
 package git.JavaPyHealthSerch;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.io.*;
-
-
+//eshi
 public class MainPro {
     public static void main(String[] args) {
         new UserHome();
     }
 }
-
 class UserHome {
     public UserHome(){
         InnerPy innerpy=new InnerPy();
         JFrame f=new JFrame("用户界面");
-        f.setBounds(600, 200, 600, 400);
+        f.setBounds(400, 600,1200, 1400);
+        //总的panel放确定按钮和文本框
+        JPanel p=new JPanel(new FlowLayout());
+        JTextArea tArea=new JTextArea(20,40);
+        JButton queding =new JButton("确定");
+        //添加按键
+        p.add(queding);
+        p.add(tArea);
+        //第一个分类的部分
         JPanel p1=new JPanel(new FlowLayout());
-        JTextArea tarea=new JTextArea(20, 40);
         JToggleButton xiaoshou=new JToggleButton("消瘦");
         JToggleButton xiuke=new JToggleButton("休克");
-        
-
-        JButton b1=new JButton("确定");
-        b1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                tarea.setText("");
-                String result="";
-                if (xiaoshou.isSelected()) {
-                    result=result+"1";
-                }
-                if (xiuke.isSelected()) {
-                    result=result+",2";
-                }
-                tarea.setText(innerpy.getdata(result));
-            }
-        });
-
-
+        //添加按键
         p1.add(xiaoshou);
         p1.add(xiuke);
-        p1.add(b1);
-        p1.add(tarea);
-
+        //第二个分类的部分
+        JPanel p2=new JPanel();
+        JToggleButton xueniao=new JToggleButton("血尿");
+        JToggleButton tangniao=new JToggleButton("糖尿");
+        //添加按键
+        p2.add(xueniao);
+        p2.add(tangniao);
+        //在总的框架上添加按钮
+        f.add(p);
         f.add(p1);
+        f.add(p2);
         f.setVisible(true);
         f.setDefaultCloseOperation(3);
     }
