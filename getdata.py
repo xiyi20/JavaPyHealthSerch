@@ -1,5 +1,9 @@
 import re
 from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from selenium.webdriver.edge.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
 find_name=re.compile(r'target="_self">(.*?)</a>')
@@ -7,10 +11,15 @@ find_symb=re.compile(r'症状：(.*?)</font>')
 
 option=webdriver.ChromeOptions()
 option.add_argument('--log-level=3')
-option.add_argument("--headless")  # 开启无界面模式
+option.add_argument('--headless')  # 开启无界面模式
 # option.add_argument("--disable-gpu") 
 
-borwers=webdriver.Chrome(options=option)
+choose=2
+if choose==1:
+    borwers=webdriver.Edge(service=Service(EdgeChromiumDriverManager.install()),options=option)
+elif choose==2:
+    borwers=webdriver.Chrome(service=Service(ChromeDriverManager.install()),options=option)
+
 borwers.get('https://jibing.bmcx.com/')
 
 buttom=input()

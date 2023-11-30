@@ -14,16 +14,11 @@ class UserHome {
     public UserHome(){
         InnerPy innerpy=new InnerPy();
         JFrame f=new JFrame("用户界面");
-        f.setBounds(400, 600,1200, 1400);
-        //总的panel放确定按钮和文本框
-        JPanel p=new JPanel(new FlowLayout());
-        JTextArea tArea=new JTextArea(20,40);
-        JButton queding =new JButton("确定");
-        //添加按键
-        p.add(queding);
-        p.add(tArea);
+        f.setLayout(new GridLayout(3,1));
+        f.setBounds(400, 200,600, 800);
+        
         //第一个分类的部分
-        JPanel p1=new JPanel(new FlowLayout());
+        JPanel p1=new JPanel();
         JToggleButton xiaoshou=new JToggleButton("消瘦");
         JToggleButton xiuke=new JToggleButton("休克");
         //添加按键
@@ -36,10 +31,30 @@ class UserHome {
         //添加按键
         p2.add(xueniao);
         p2.add(tangniao);
+        //总的panel放确定按钮和文本框
+        JPanel p=new JPanel();
+        JTextArea tArea=new JTextArea(20,40);
+        JButton queding =new JButton("确定");
+        queding.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                tArea.setText("");
+                String result="";
+                if (xiaoshou.isSelected()) {
+                    result=result+"1";
+                }
+                if (xiuke.isSelected()) {
+                    result=result+",2";
+                }
+                tArea.setText(innerpy.getdata(result));
+            }
+        });
+        //添加按键
+        p.add(queding);
+        p.add(tArea);
         //在总的框架上添加按钮
-        f.add(p);
         f.add(p1);
         f.add(p2);
+        f.add(p);
         f.setVisible(true);
         f.setDefaultCloseOperation(3);
     }
