@@ -12,7 +12,7 @@ public class MainPro {
 }
 class UserHome {
     public UserHome(){
-        InnerPy innerpy=new InnerPy();
+        Pyhandler ph=new Pyhandler();
         JFrame f=new JFrame("用户界面");
         f.setLayout(new GridLayout(3,1));
         f.setBounds(400, 0,600, 800);
@@ -51,7 +51,7 @@ class UserHome {
                 if (tangniao.isSelected()) {
                     result=result+",4";
                 }
-                tArea.setText(innerpy.getdata(result));
+                tArea.setText(ph.getdata(result));
             }
         });
         //添加按键
@@ -66,8 +66,8 @@ class UserHome {
     }
 }
 
-class InnerPy {
-    public InnerPy(){}
+class Pyhandler {
+    public Pyhandler(){}
     public String getdata(String sendin){
         try {
             ProcessBuilder pb = new ProcessBuilder("python", "git\\JavaPyHealthSerch\\getdata.py");
