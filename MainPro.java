@@ -15,7 +15,7 @@ class UserHome {
         InnerPy innerpy=new InnerPy();
         JFrame f=new JFrame("用户界面");
         f.setLayout(new GridLayout(3,1));
-        f.setBounds(400, 200,600, 800);
+        f.setBounds(400, 0,600, 800);
         
         //第一个分类的部分
         JPanel p1=new JPanel();
@@ -40,10 +40,16 @@ class UserHome {
                 tArea.setText("");
                 String result="";
                 if (xiaoshou.isSelected()) {
-                    result=result+"1";
+                    result=result+'1';
                 }
                 if (xiuke.isSelected()) {
                     result=result+",2";
+                }
+                if (xueniao.isSelected()) {
+                    result=result+",3";
+                }
+                if (tangniao.isSelected()) {
+                    result=result+",4";
                 }
                 tArea.setText(innerpy.getdata(result));
             }
@@ -64,12 +70,12 @@ class InnerPy {
     public InnerPy(){}
     public String getdata(String sendin){
         try {
-            ProcessBuilder pb = new ProcessBuilder("python", "git\\JavaPyHealthSerch\\Getdata.py");
+            ProcessBuilder pb = new ProcessBuilder("python", "git\\JavaPyHealthSerch\\getdata.py");
             Process process = pb.start();
             // 获取进程的输入流和输出流
             InputStream inputStream = process.getInputStream();
             OutputStream outputStream = process.getOutputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "gbk"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"gbk"));
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream));
  
             writer.println(sendin);
@@ -79,7 +85,7 @@ class InnerPy {
             String line;String res="";
             int exitCode = process.waitFor();
             int flag=1;
-            while ((line = reader.readLine())!=null) {
+            while ((line = reader.readLine()) !=null) {
                 if(flag%2==0)res+=line+"\n\n";
                 else res+=line+"\n";
                 flag++;
