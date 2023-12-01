@@ -1,38 +1,31 @@
 import re
-from selenium import webdriver
-from selenium.webdriver.edge.service import Service
-from selenium.webdriver.edge.service import Service
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
+import requests
+from bs4 import BeautifulSoup
 
-find_name=re.compile(r'target="_self">(.*?)</a>')
-find_symb=re.compile(r'症状：(.*?)</font>')
 
-option=webdriver.ChromeOptions()
-option.add_argument('--log-level=3')
-option.add_argument('--headless')  # 开启无界面模式
-# option.add_argument("--disable-gpu") 
+find_name=re.compile(r'">(.*?)</a><br/>')
+find_symb=re.compile(r'"#999999">(.*?)</font></li>')
 
-choose=2
-if choose==1:
-    borwers=webdriver.Edge(service=Service(EdgeChromiumDriverManager.install()),options=option)
-elif choose==2:
-    borwers=webdriver.Chrome(service=Service(ChromeDriverManager.install()),options=option)
 
-borwers.get('https://jibing.bmcx.com/')
+button=input()
+button=button.split(',')
+val=''
+desc={'1':'消瘦','2':',休克','3':',血尿','4':',糖尿'}
+for i in button:
+    if i=='':continue
+    if i in desc:
+        val+=desc[i]
+            
 
-buttom=input()
-values=buttom.split(',')
-for i in values:
-    if i=='':
-        continue
-    borwers.find_element(By.XPATH,'//*[@id="x_z_k"]/ul[1]/li['+i+']/label/input').click()
-borwers.find_element(By.ID,'button').click()
+url='https://jibing.bmcx.com/'+val+'__jibing/'
+headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
+gethtml=requests.get(url,headers)
+soup=BeautifulSoup(gethtml.text,'lxml')
 
-ul=borwers.find_element(By.CLASS_NAME,'list')
-lis=ul.find_elements(By.TAG_NAME,'li')
-for i in lis[:6]:
-    print(i.text)
+for i in range(1,6):
+    sick=soup.select('#main_content > ul > li:nth-child('+str(i)+')')
+    if sick==[]:break
+    sickname=re.findall(find_name,str(sick[0]))[0]
+    sicksymp=re.findall(find_symb,str(sick[0]))[0]
+    print(sickname+'\n'+sicksymp)
 
-borwers.quit()
