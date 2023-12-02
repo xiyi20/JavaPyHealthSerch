@@ -90,6 +90,8 @@ class Pyhandler {
                 else res+=line+"\n";
                 flag++;
             }
+            if (res.isEmpty()) res="没有符合条件的结果";
+
             if (exitCode==0) System.out.println("Python程序执行完成");
             else System.out.println("Python程序执行异常,退出码:"+exitCode);
             return res;
