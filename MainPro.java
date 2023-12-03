@@ -46,22 +46,25 @@ class UserHome{
         }
         panel.add(p1);
 
-        JPanel p2 = new JPanel(new GridLayout(5, 1));
+        JPanel p2 = new JPanel(new GridLayout(6, 1));
         p2.setSize(200, 300);
         JPanel p2a=new JPanel();
         JPanel p2b=new JPanel();
         JPanel p2c=new JPanel();
         JPanel p2d=new JPanel();
         JPanel p2e=new JPanel();
+        JPanel p2f=new JPanel();
         p2.setBorder(new TitledBorder(null, "头颈部症状", 4, 2, null, Color.BLUE));
-        String[] p2buttonTexts = {"鼻出血", "鼻溢液", "恶心与呕吐", "耳痛", "耳鸣", "耳溢液",
-         "呼吸异常", "红眼", "呼吸衰竭", "颈肩痛", "口腔痛", "口臭", "溃疡",
-          "咳痰", "咳嗽", "声音嘶哑", "食欲异常", "色素异常", "色觉异常", "眼痛",
-           "眼球震颤", "眼球突出", "眼球内陷", "头痛", "听力减退", "瞳孔异常",
-            "吞咽困难", "呕血", "颈静脉怒张", "角膜混浊", "咽痛", "咽炎,舌炎,龈炎",
-             "言语障碍", "牙齿异常", "眼球运动障碍", "咽部异物感", "呃逆"};
+        String[] p2buttonTexts = {"鼻出血","鼻溢液","恶心与呕吐","耳痛","耳鸣","耳溢液",
+            "呼吸异常","红眼","呼吸衰竭","颈肩痛","口腔痛","口臭","溃疡",
+            "咳痰","咳嗽","声音嘶哑","食欲异常","色素异常","色觉异常","眼痛",
+            "眼球震颤","眼球突出","眼球内陷","头痛","听力减退","瞳孔异常",
+            "吞咽困难","呕血","颈静脉怒张","角膜混浊","咽痛","咽炎,舌炎,龈炎",
+            "言语障碍","牙齿异常","眼球运动障碍","咽部异物感","呃逆","脑膜刺激症",
+            "咯血","眩晕","腮腺区肿大","呼吸性酸中毒","呼吸性碱中毒","气息异常",
+            "泪溢","啰音","视力障碍","急性呼吸窘迫综合征"};
         String p2results[]=new String[p2buttonTexts.length];
-        JPanel[] p2son={p2a,p2b,p2c,p2d,p2e};
+        JPanel[] p2son={p2a,p2b,p2c,p2d,p2e,p2f};
         JToggleButton[] p2buttons = new JToggleButton[p2buttonTexts.length];
         for (int i=0,j=0;i<p2buttonTexts.length;i++) {
             p2buttons[i] = new JToggleButton(p2buttonTexts[i]);
@@ -74,7 +77,7 @@ class UserHome{
         for(int i=0;i<p2son.length;i++){
             p2.add(p2son[i]);
         }
-        panel.add(p2);
+        panel.add(
 
         JPanel px=new JPanel(new BorderLayout());
         JTextArea tArea=new JTextArea(50,0);
