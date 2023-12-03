@@ -16,7 +16,6 @@ class UserHome {
         JFrame f=new JFrame("用户界面");
         f.setLayout(new GridLayout(3,1));
         f.setBounds(400, 0,600, 800);
-        
         //第一个分类的部分
         JPanel p1=new JPanel();
         JToggleButton p11Button=new JToggleButton("消瘦");
