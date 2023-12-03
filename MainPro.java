@@ -120,7 +120,7 @@ class Pyhandler {
     public String getdata(String sendin){
         try {
             ProcessBuilder pb;
-            int user=0;
+            int user=1;
             if (user==0){pb=new ProcessBuilder("python","git\\JavaPyHealthSerch\\getdata.py");}
             else pb=new ProcessBuilder("python","getdata.py");
             Process process = pb.start();
