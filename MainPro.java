@@ -252,6 +252,41 @@ class UserHome{
                         result+=p2results[i];
                     }
                 }
+                 for(int i=0;i<p3buttons.length;i++){
+                    if(p3buttons[i].isSelected()){
+                        result+=p3results[i];
+                    }
+                }
+                 for(int i=0;i<p4buttons.length;i++){
+                    if(p4buttons[i].isSelected()){
+                        result+=p4results[i];
+                    }
+                }
+                 for(int i=0;i<p5buttons.length;i++){
+                    if(p5buttons[i].isSelected()){
+                        result+=p5results[i];
+                    }
+                }
+                 for(int i=0;i<p6buttons.length;i++){
+                    if(p6buttons[i].isSelected()){
+                        result+=p6results[i];
+                    }
+                }
+                 for(int i=0;i<p7buttons.length;i++){
+                    if(p7buttons[i].isSelected()){
+                        result+=p7results[i];
+                    }
+                }
+                 for(int i=0;i<p8buttons.length;i++){
+                    if(p8buttons[i].isSelected()){
+                        result+=p8results[i];
+                    }
+                }
+                 for(int i=0;i<p9buttons.length;i++){
+                    if(p9buttons[i].isSelected()){
+                        result+=p9results[i];
+                    }
+                }
                 tArea.setText(ph.getdata(result));
             }
         });
