@@ -1,4 +1,3 @@
-package git.JavaPyHealthSerch;
 import java.io.*;
 
 class Pyhandler {

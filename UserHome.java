@@ -1,4 +1,3 @@
-package git.JavaPyHealthSerch;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +9,7 @@ class UserHome{
         Pyhandler ph=new Pyhandler();
         JFrame frame = new JFrame("自主诊断应用");
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(10, 1));
+        panel.setLayout(new GridLayout(5, 1));
 
         JPanel p1=new JPanel(new GridLayout(3,1));
         JPanel p1a=new JPanel();

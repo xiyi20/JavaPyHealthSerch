@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -73,7 +72,7 @@ class Regist {
         b2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new UserHome();//////////////////////////////////////////////////
+                new Login();//////////////////////////////////////////////////
             }
         });
         p6.add(b1);p6.add(b2);

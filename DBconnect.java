@@ -17,7 +17,7 @@ public class DBconnect {
     }
     public int login(String name,String pw){
         int exitcode=0;
-        String exec="select password from paintinfo where name='"+name+"'";
+        String exec="select password from users where username='"+name+"'";
         try {
             Statement s=c.createStatement();
             ResultSet r=s.executeQuery(exec);
