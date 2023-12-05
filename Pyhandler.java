@@ -5,7 +5,7 @@ class Pyhandler {
     public String getdata(String sendin){
         try {
             ProcessBuilder pb;
-            int user=1;
+            int user=0;
             if (user==0) pb=new ProcessBuilder("python","git\\JavaPyHealthSerch\\getdata.py");
             else if(user==1) pb=new ProcessBuilder("python","getdata.py");
             else pb=new ProcessBuilder("python","E:\\workContact\\JavaPyHealthSerch\\getdata.py");
