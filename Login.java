@@ -8,18 +8,35 @@ class Login {
     public Login(){
         DBconnect d=new DBconnect();
         JFrame frame=new JFrame("登录界面");
-        frame.setLayout(new GridLayout(4,1));
+        
+        JPanel bg=new Bgpanel().getbg(0,4,1);
+
+        JPanel banner=new JPanel();
+        JLabel banner1=new JLabel("欢迎登录");
+        banner1.setFont(new Font("宋体",0,35));
+        banner.setOpaque(false);
+        banner.add(banner1);
+
         JPanel p1=new JPanel();
+        p1.setOpaque(false);
         JLabel t1=new JLabel("账号：");
+        t1.setOpaque(false);
         JTextField textField1=new JTextField(15);
+        textField1.setOpaque(false);
         p1.add(t1);
         p1.add(textField1);
+
         JPanel p2=new JPanel();
+        p2.setOpaque(false);
         JLabel t2=new JLabel("密码：");
+        t2.setOpaque(false);
         JTextField textField2=new JTextField(15);
+        textField2.setOpaque(false);
         p2.add(t2);
         p2.add(textField2);
+
         JPanel p3=new JPanel();
+        p3.setOpaque(false);
         JButton b1=new JButton("登录");
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -30,7 +47,7 @@ class Login {
                 }else{
                     int result=d.login(name, password);
                     if (result==0) {
-                        JOptionPane.showMessageDialog(null,"欢迎登陆");
+                        JOptionPane.showMessageDialog(null,"登陆成功");
                         frame.dispose();
                         new UserHome();
                     }
@@ -38,8 +55,6 @@ class Login {
                     else if (result==2) JOptionPane.showMessageDialog(null,"请先创建用户");
                     else if (result==3) JOptionPane.showMessageDialog(null,"数据库有误,请重试");
                 }
-                
-                
             }
         });
         JButton b2=new JButton("去注册");
@@ -50,9 +65,12 @@ class Login {
             }
         });
         p3.add(b1);p3.add(b2);
-        frame.add(p1);
-        frame.add(p2);
-        frame.add(p3);
+
+        bg.add(banner);
+        bg.add(p1);
+        bg.add(p2);
+        bg.add(p3);
+        frame.add(bg);
         frame.setBounds(650,200,400, 400);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(3);
