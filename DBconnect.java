@@ -3,9 +3,9 @@ import java.sql.*;
  
 public class DBconnect {
     String jdbc="com.mysql.cj.jdbc.Driver";
-    String url="jdbc:mysql://localhost:3306/healthserch";
-    String name="root";
-    String password="324254";
+    String url=MainPro.url;
+    String name=MainPro.name;
+    String password=MainPro.password;
     Connection c;
     public DBconnect(){
         try {
