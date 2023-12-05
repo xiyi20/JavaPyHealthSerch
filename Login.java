@@ -9,7 +9,8 @@ class Login {
         DBconnect d=new DBconnect();
         JFrame frame=new JFrame("登录界面");
         frame.setLayout(new GridLayout(4,1));
-        JPanel p1=new JPanel();
+        JPanel p1=new JPanel(){
+        };
         JLabel t1=new JLabel("账号:");
         JTextField textField1=new JTextField(15);
          p1.add(t1);

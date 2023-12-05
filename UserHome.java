@@ -7,9 +7,71 @@ import javax.swing.border.TitledBorder;
 class UserHome{
     public UserHome(){
         Pyhandler ph=new Pyhandler();
-        JFrame frame = new JFrame("自主诊断应用");
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 1));
+        JFrame frame=new JFrame("自主诊断应用");
+        frame.setLayout(new BorderLayout());
+        CardLayout card=new CardLayout();
+        JPanel panel=new JPanel(card);
+
+        JMenuBar mb=new JMenuBar();
+        JMenu m1=new JMenu("其他类型症状");
+        mb.add(m1);
+        JMenuItem m1b=new JMenuItem("全身症状");
+        m1b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"全身");
+            }
+        });
+        JMenuItem m2b=new JMenuItem("头颈部症状");
+        m2b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"头颈");
+            }
+        });
+        JMenuItem m3b=new JMenuItem("胸部症状");
+        m3b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"胸部");
+            }
+        });
+        JMenuItem m4b=new JMenuItem("腹部症状");
+        m4b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"腹部");
+            }
+        });
+        JMenuItem m5b=new JMenuItem("四肢症状");
+        m5b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"四肢");
+            }
+        });
+        JMenuItem m6b=new JMenuItem("皮肤症状");
+        m6b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"皮肤");
+            }
+        });
+        JMenuItem m7b=new JMenuItem("分泌排泄症状");
+        m7b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"分泌");
+            }
+        });
+        JMenuItem m8b=new JMenuItem("两性症状");
+        m8b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"两性");
+            }
+        });
+        JMenuItem m9b=new JMenuItem("其他症状");
+        m9b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(panel,"其他");
+            }
+        });
+        m1.add(m1b);m1.add(m2b);m1.add(m3b);m1.add(m4b);
+        m1.add(m5b);m1.add(m6b);m1.add(m7b);m1.add(m8b);m1.add(m9b);
+
 
         JPanel p1=new JPanel(new GridLayout(3,1));
         JPanel p1a=new JPanel();
@@ -38,7 +100,7 @@ class UserHome{
         for(int i=0;i<p1son.length;i++){
             p1.add(p1son[i]);
         }
-        panel.add(p1);
+        panel.add(p1,"全身");
 
         JPanel p2 = new JPanel(new GridLayout(6, 1));
         JPanel p2a=new JPanel();
@@ -70,7 +132,7 @@ class UserHome{
         for(int i=0;i<p2son.length;i++){
             p2.add(p2son[i]);
         }
-        panel.add(p2);
+        panel.add(p2,"头颈");
 
         JPanel p3 = new JPanel(new GridLayout(3, 1));
         JPanel p3a=new JPanel();
@@ -95,7 +157,7 @@ class UserHome{
         for(int i=0;i<p3son.length;i++){
             p3.add(p3son[i]);
         }
-        panel.add(p3);
+        panel.add(p3,"胸部");
 
         JPanel p4 = new JPanel(new GridLayout(2, 1));
         JPanel p4a=new JPanel();
@@ -118,7 +180,7 @@ class UserHome{
         for(int i=0;i<p4son.length;i++){
             p4.add(p4son[i]);
         }
-        panel.add(p4);
+        panel.add(p4,"腹部");
 
         JPanel p5 = new JPanel(new GridLayout(1, 1));
         JPanel p5a=new JPanel();
@@ -138,7 +200,7 @@ class UserHome{
         for(int i=0;i<p5son.length;i++){
             p5.add(p5son[i]);
         }
-        panel.add(p5);
+        panel.add(p5,"四肢");
 
         JPanel p6 = new JPanel(new GridLayout(2, 1));
         JPanel p6a=new JPanel();
@@ -159,7 +221,7 @@ class UserHome{
         for(int i=0;i<p6son.length;i++){
             p6.add(p6son[i]);
         }
-        panel.add(p6);
+        panel.add(p6,"皮肤");
 
         JPanel p7 = new JPanel(new GridLayout(2, 1));
         JPanel p7a=new JPanel();
@@ -182,7 +244,7 @@ class UserHome{
         for(int i=0;i<p7son.length;i++){
             p7.add(p7son[i]);
         }
-        panel.add(p7);
+        panel.add(p7,"分泌");
 
         JPanel p8 = new JPanel(new GridLayout(2, 1));
         JPanel p8a=new JPanel();
@@ -203,7 +265,7 @@ class UserHome{
         for(int i=0;i<p8son.length;i++){
             p8.add(p8son[i]);
         }
-        panel.add(p8);
+        panel.add(p8,"两性");
 
         JPanel p9 = new JPanel(new GridLayout(4, 1));
         JPanel p9a=new JPanel();
@@ -230,77 +292,124 @@ class UserHome{
         for(int i=0;i<p9son.length;i++){
             p9.add(p9son[i]);
         }
-        panel.add(p9);
+        panel.add(p9,"其他");
 
-        JPanel px=new JPanel(new BorderLayout());
+        JPanel py=new JPanel(new BorderLayout());
         JTextArea tArea=new JTextArea(50,0);
-        JPanel px1=new JPanel();
+        JPanel py1=new JPanel();
         JButton queding =new JButton("确定");
-        px1.add(queding);
         queding.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 tArea.setText("");
                 String result="";
+                String result_name="";
                 for(int i=0;i<p1buttons.length;i++){
                     if(p1buttons[i].isSelected()){
                         result+=p1results[i];
+                        result_name+="•全身症状:"+p1buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p2buttons.length;i++){
                     if(p2buttons[i].isSelected()){
                         result+=p2results[i];
+                        result_name+="•头颈部症状:"+p2buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p3buttons.length;i++){
                     if(p3buttons[i].isSelected()){
                         result+=p3results[i];
+                        result_name+="•胸部症状:"+p3buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p4buttons.length;i++){
                     if(p4buttons[i].isSelected()){
                         result+=p4results[i];
+                        result_name+="•腹部症状:"+p4buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p5buttons.length;i++){
                     if(p5buttons[i].isSelected()){
                         result+=p5results[i];
+                        result_name+="•四肢症状:"+p5buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p6buttons.length;i++){
                     if(p6buttons[i].isSelected()){
                         result+=p6results[i];
+                        result_name+="•皮肤症状:"+p6buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p7buttons.length;i++){
                     if(p7buttons[i].isSelected()){
                         result+=p7results[i];
+                        result_name+="•分泌排泄症状:"+p7buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p8buttons.length;i++){
                     if(p8buttons[i].isSelected()){
                         result+=p8results[i];
+                        result_name+="•两性症状:"+p8buttonTexts[i]+"\n";
                     }
                 }
                 for(int i=0;i<p9buttons.length;i++){
                     if(p9buttons[i].isSelected()){
                         result+=p9results[i];
+                        result_name+="•其他症状:"+p9buttonTexts[i]+"\n";
                     }
                 }
-                tArea.setText(ph.getdata(result));
+                int code=JOptionPane.showConfirmDialog(null,result_name+"确定查询?","您已选择:",JOptionPane.YES_NO_OPTION);
+                if (code==JOptionPane.YES_OPTION) {
+                    tArea.setText(ph.getdata(result));
+                }
             }
         });
+        JButton quxiao=new JButton("重置选择");
+        quxiao.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                for(int i=0;i<p1buttons.length;i++){
+                    p1buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p2buttons.length;i++){
+                    p2buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p3buttons.length;i++){
+                    p3buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p4buttons.length;i++){
+                    p4buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p5buttons.length;i++){
+                    p5buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p6buttons.length;i++){
+                    p6buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p7buttons.length;i++){
+                    p7buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p8buttons.length;i++){
+                    p8buttons[i].setSelected(false);
+                }
+                for(int i=0;i<p9buttons.length;i++){
+                    p9buttons[i].setSelected(false);
+                }
+            }
+        });
+        py1.add(queding);py1.add(quxiao);
         ScrollPane areacroll=new ScrollPane();
         areacroll.add(tArea);
-        px.add(px1,BorderLayout.NORTH);px.add(areacroll,BorderLayout.CENTER);
-        panel.add(px);
+        py.setPreferredSize(new Dimension(0, 300));
+        py.add(py1,BorderLayout.NORTH);py.add(areacroll,BorderLayout.CENTER);
 
 
         // 创建一个滚动条，并将Panel添加到滚动条的视口中
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.add(panel);
         // 将滚动条添加到Frame中
-        frame.add(scrollPane);
-        frame.setSize(900, 700);
+        frame.add(mb,BorderLayout.NORTH);
+        frame.add(scrollPane,BorderLayout.CENTER);
+        frame.add(py,BorderLayout.SOUTH);
+        frame.setBounds(300,0,900, 700);
         frame.setDefaultCloseOperation(3);
         frame.setVisible(true);
     }
