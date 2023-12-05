@@ -5,9 +5,9 @@ class Pyhandler {
     public String getdata(String sendin){
         try {
             ProcessBuilder pb;
-            int user=0;
-            if (user==0) pb=new ProcessBuilder("python","git\\JavaPyHealthSerch\\getdata.py");
-            else if(user==1) pb=new ProcessBuilder("python","getdata.py");
+            int code=MainPro.pycode;
+            if (code==0) pb=new ProcessBuilder("python","git\\JavaPyHealthSerch\\getdata.py");
+            else if(code==1) pb=new ProcessBuilder("python","getdata.py");
             else pb=new ProcessBuilder("python","E:\\workContact\\JavaPyHealthSerch\\getdata.py");
             Process process = pb.start();
             // 获取进程的输入流和输出流
