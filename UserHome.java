@@ -401,13 +401,9 @@ class UserHome{
         py.setPreferredSize(new Dimension(0, 300));
         py.add(py1,BorderLayout.NORTH);py.add(areacroll,BorderLayout.CENTER);
 
-
-        // 创建一个滚动条，并将Panel添加到滚动条的视口中
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.add(panel);
-        // 将滚动条添加到Frame中
+        
         frame.add(mb,BorderLayout.NORTH);
-        frame.add(scrollPane,BorderLayout.CENTER);
+        frame.add(panel,BorderLayout.CENTER);
         frame.add(py,BorderLayout.SOUTH);
         frame.setBounds(300,0,900, 700);
         frame.setDefaultCloseOperation(3);
