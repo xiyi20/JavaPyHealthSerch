@@ -54,4 +54,27 @@ public class DBconnect {
         }
         return exitcode;
     }
+    public String[] usermodify(int mode,String username,String password,String phone){
+        String exitcode="0";
+        String exec="select password,phone from users where username='"+username+"'";
+        String exec1="updata users set username='"+username+"'";
+        String exec2="updata users set password='"+password+"'";
+        String exec3="updata users set phone='"+phone+"'";
+        if (mode==0) {
+            try {
+                Statement s=c.createStatement();
+                ResultSet r=s.executeQuery(exec);
+                if (r.next()) {
+                    password=r.getString("password");
+                    phone=r.getString("phone");
+                }
+            } catch (Exception e) {
+                exitcode="2";
+            }
+        }
+
+
+        String[] result={exitcode,password,phone};
+        return result;
+    }
 }
