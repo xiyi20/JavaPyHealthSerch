@@ -77,4 +77,7 @@ public class DBconnect {
         String[] result={exitcode,password,phone};
         return result;
     }
+    public int Forgetpw(String username, String anwser, String password2) {
+        return 0;
+    }
 }
