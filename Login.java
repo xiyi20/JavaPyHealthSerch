@@ -30,7 +30,7 @@ class Login {
         p2.setOpaque(false);
         JLabel t2=new JLabel("密码：");
         t2.setOpaque(false);
-        JTextField textField2=new JTextField(15);
+        JTextField textField2=new JPasswordField(15);
         textField2.setOpaque(false);
         p2.add(t2);
         p2.add(textField2);
@@ -48,6 +48,10 @@ class Login {
                     int result=d.login(name, password);
                     if (result==0) {
                         JOptionPane.showMessageDialog(null,"登陆成功");
+                        MainPro.username=name;
+                        String[] userinfo=d.usermodify(0, name, "", "");
+                        MainPro.userpassword=userinfo[1];
+                        MainPro.userphone=userinfo[2];
                         frame.dispose();
                         new UserHome();
                     }
