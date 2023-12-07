@@ -17,62 +17,74 @@ class UserHome{
         JMenuBar mb=new JMenuBar();
         JMenu m1=new JMenu("其他类型症状");
         mb.add(m1);
-        JMenuItem m1b=new JMenuItem("全身症状");
-        m1b.addActionListener(new ActionListener() {
+        JMenuItem m1a=new JMenuItem("全身症状");
+        m1a.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"全身");
             }
         });
-        JMenuItem m2b=new JMenuItem("头颈部症状");
-        m2b.addActionListener(new ActionListener() {
+        JMenuItem m1b=new JMenuItem("头颈部症状");
+        m1b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"头颈");
             }
         });
-        JMenuItem m3b=new JMenuItem("胸部症状");
-        m3b.addActionListener(new ActionListener() {
+        JMenuItem m1c=new JMenuItem("胸部症状");
+        m1c.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"胸部");
             }
         });
-        JMenuItem m4b=new JMenuItem("腹部症状");
-        m4b.addActionListener(new ActionListener() {
+        JMenuItem m1d=new JMenuItem("腹部症状");
+        m1d.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"腹部");
             }
         });
-        JMenuItem m5b=new JMenuItem("四肢症状");
-        m5b.addActionListener(new ActionListener() {
+        JMenuItem m1e=new JMenuItem("四肢症状");
+        m1e.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"四肢");
             }
         });
-        JMenuItem m6b=new JMenuItem("皮肤症状");
-        m6b.addActionListener(new ActionListener() {
+        JMenuItem m1f=new JMenuItem("皮肤症状");
+        m1f.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"皮肤");
             }
         });
-        JMenuItem m7b=new JMenuItem("分泌排泄症状");
-        m7b.addActionListener(new ActionListener() {
+        JMenuItem m1g=new JMenuItem("分泌排泄症状");
+        m1g.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"分泌");
             }
         });
-        JMenuItem m8b=new JMenuItem("两性症状");
-        m8b.addActionListener(new ActionListener() {
+        JMenuItem m1h=new JMenuItem("两性症状");
+        m1h.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"两性");
             }
         });
-        JMenuItem m9b=new JMenuItem("其他症状");
-        m9b.addActionListener(new ActionListener() {
+        JMenuItem m1i=new JMenuItem("其他症状");
+        m1i.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 card.show(bg,"其他");
             }
         });
-        m1.add(m1b);m1.add(m2b);m1.add(m3b);m1.add(m4b);
-        m1.add(m5b);m1.add(m6b);m1.add(m7b);m1.add(m8b);m1.add(m9b);
+        m1.add(m1a);m1.add(m1b);m1.add(m1c);m1.add(m1d);
+        m1.add(m1e);m1.add(m1f);m1.add(m1g);m1.add(m1h);m1.add(m1i);
+
+        JMenu m2=new JMenu("个人中心");
+        mb.add(m2);
+        JMenuItem m2a=new JMenuItem("信息修改");
+        m2a.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(bg,"修改");
+            }
+        });
+        JMenuItem m2b=new JMenuItem("查询历史");
+        m2.add(m2a);m2.add(m2b);
+
 
 
         JPanel p1=new JPanel(new GridLayout(3,1));
@@ -330,13 +342,43 @@ class UserHome{
         }
         bg.add(p9,"其他");
 
+
+        JPanel p10=new JPanel();
+        p10.setLayout(new BoxLayout(p10, BoxLayout.Y_AXIS));
+        p10.setBorder(new TitledBorder(null, "信息修改", 4, 2, null,Color.BLUE));
+        JLabel t1=new JLabel("欢迎您,"+MainPro.username);
+        t1.setFont(new Font("黑体", 0, 30));
+        t1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JPanel p10a=new JPanel();
+        JLabel t2=new JLabel("用户名:");
+        JTextField xianshi1=new JTextField(15);
+        xianshi1.setEditable(false);xianshi1.setText(MainPro.username);
+        JButton xiugai1=new JButton("修改");
+        p10a.add(t2);p10a.add(xianshi1);p10a.add(xiugai1);
+        JPanel p10b=new JPanel();
+        JLabel t3=new JLabel("密码:");
+        JTextField xianshi2=new JTextField(16);
+        xianshi2.setEditable(false);;xianshi2.setText(MainPro.userpassword);
+        JButton xiugai2=new JButton("修改");
+        p10b.add(t3);p10b.add(xianshi2);p10b.add(xiugai2);
+        JPanel p10c=new JPanel();
+        JLabel t4=new JLabel("手机号:");
+        JTextField xianshi3=new JTextField(15);
+        xianshi3.setEditable(false);xianshi3.setText(MainPro.userphone);
+        JButton xiugai3=new JButton("修改");
+        p10c.add(t4);p10c.add(xianshi3);p10c.add(xiugai3);
+        p10.add(t1);p10.add(p10a);p10.add(p10b);p10.add(p10c);
+        bg.add(p10,"修改");
+
+
+
         JPanel py=new JPanel(new BorderLayout());
+        py.setBorder(new TitledBorder(null, "查询结果", 4, 2,null,Color.blue));
         JTextArea tArea=new JTextArea(50,0);
         JPanel py1=new JPanel();
         JButton queding =new JButton("确定");
         queding.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                tArea.setText("");
                 String result="";
                 String result_name="";
                 for(int i=0;i<p1buttons.length;i++){
@@ -395,6 +437,7 @@ class UserHome{
                 }
                 int code=JOptionPane.showConfirmDialog(null,result_name+"确定查询?","您已选择:",JOptionPane.YES_NO_OPTION);
                 if (code==JOptionPane.YES_OPTION) {
+                    tArea.setText("");
                     tArea.setText(ph.getdata(result));
                 }
             }
