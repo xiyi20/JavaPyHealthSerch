@@ -69,7 +69,16 @@ class Login {
                 new Regist();
             }
         });
-        p3.add(b1);p3.add(b2);
+        JButton b3=new JButton("忘记密码");
+        b3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                frame.dispose();
+                new Forgetpw();
+            }
+        });
+        p3.add(b1);
+        p3.add(b3);
+        p3.add(b2);
 
         bg.add(banner);
         bg.add(p1);

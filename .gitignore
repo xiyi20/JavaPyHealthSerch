@@ -1,1 +1,6 @@
+config.properties
+.idea/vcs.xml
 .vscode/settings.json
+.idea/workspace.xml
+.gitignore
+config.properties
