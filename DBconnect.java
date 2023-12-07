@@ -56,25 +56,33 @@ public class DBconnect {
     }
     public String[] usermodify(int mode,String username,String password,String phone){
         String exitcode="0";
-        String exec="select password,phone from users where username='"+username+"'";
-        String exec1="updata users set username='"+username+"'";
-        String exec2="updata users set password='"+password+"'";
-        String exec3="updata users set phone='"+phone+"'";
-        if (mode==0) {
-            try {
-                Statement s=c.createStatement();
+        String id="";
+        String exec="select id,password,phone from users where username='"+username+"'";
+        String exec1="updata users set username='"+username+"' where id='"+MainPro.id+"'";
+        String exec2="updata users set password='"+password+"' where id='"+MainPro.id+"'";
+        String exec3="updata users set phone='"+phone+"' where id='"+MainPro.id+"'";
+        try {
+            Statement s=c.createStatement();
+            if(mode==0){
                 ResultSet r=s.executeQuery(exec);
                 if (r.next()) {
+                    id=r.getString("id");
                     password=r.getString("password");
                     phone=r.getString("phone");
                 }
-            } catch (Exception e) {
-                exitcode="2";
+            }else if(mode==1){
+                s.executeUpdate(exec1);
+            }else if(mode==2){
+                s.executeUpdate(exec2);
+            }else{
+                s.executeUpdate(exec3);
             }
+        } catch (Exception e) {
+            exitcode="2";
         }
 
 
-        String[] result={exitcode,password,phone};
+        String[] result={exitcode,id,password,phone};
         return result;
     }
 }

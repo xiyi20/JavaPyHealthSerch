@@ -49,9 +49,10 @@ class Login {
                     if (result==0) {
                         JOptionPane.showMessageDialog(null,"登陆成功");
                         MainPro.username=name;
-                        String[] userinfo=d.usermodify(0, name, "", "");
-                        MainPro.userpassword=userinfo[1];
-                        MainPro.userphone=userinfo[2];
+                        String[] userinfo=d.usermodify(0,name,"","");
+                        MainPro.id=Integer.parseInt(userinfo[1]);
+                        MainPro.userpassword=userinfo[2];
+                        MainPro.userphone=userinfo[3];
                         frame.dispose();
                         new UserHome();
                     }
