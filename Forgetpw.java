@@ -55,11 +55,12 @@ class Forgetpw
         p1.setOpaque(false);
         p2.setOpaque(false);
         p3.setOpaque(false);
+        p4.setOpaque(false);
         
-        frame.add(p1);
-        frame.add(p2);
-        frame.add(p3);
-        frame.add(p4);
+        bg.add(p1);
+        bg.add(p2);
+        bg.add(p3);
+        bg.add(p4);
         frame.add(bg);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(3);
