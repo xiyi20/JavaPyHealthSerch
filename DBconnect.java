@@ -33,16 +33,16 @@ public class DBconnect {
         }
         return exitcode;
     }
-    public int regist(String username,String password,String sex,String phone){
+    public int regist(String username,String password,String sex,String phone,String question,String anwser){
         int exitcode=0;
-        String exec1=String.format("select username from users where username='%s'",username);
-        String exec2=String.format("insert into users (username,password,sex,phone) values ('%s','%s','%s','%s')",username,password,sex,phone);
         try {
             Statement s=c.createStatement();
+            String exec1=String.format("select username from users where username='%s'",username);
             ResultSet r=s.executeQuery(exec1);
             if(r.next()) exitcode=1;//已存在此用户
             else{
                 try {
+                    String exec2=String.format("insert into users (username,password,sex,phone,question,anwser) values ('%s','%s','%s','%s','%s','%s')",username,password,sex,phone,question,anwser);
                     s.executeUpdate(exec2);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -54,18 +54,20 @@ public class DBconnect {
         }
         return exitcode;
     }
-    public String[] usermodify(int mode,String username,String password,String phone){
+    public String[] usermodify(int mode,String username,String password,String phone,String question,String anwser){
         String exitcode="0";
         String id="";
         try {
             Statement s=c.createStatement();
             if(mode==0){
-                String exec="select id,password,phone from users where username='"+username+"'";
+                String exec="select id,password,phone,question,anwser from users where username='"+username+"'";
                 ResultSet r=s.executeQuery(exec);
                 if (r.next()) {
-                    id=r.getString("id");
-                    password=r.getString("password");
-                    phone=r.getString("phone");
+                    id=r.getString(1);
+                    password=r.getString(2);
+                    phone=r.getString(3);
+                    question=r.getString(4);
+                    anwser=r.getString(5);
                 }
             }else if(mode==1){
                 String exec1="update users set username='"+username+"' where id="+MainPro.id;
@@ -73,15 +75,21 @@ public class DBconnect {
             }else if(mode==2){
                 String exec2="update users set password='"+password+"' where id="+MainPro.id;
                 s.executeUpdate(exec2);
-            }else{
+            }else if(mode==3){
                 String exec3="update users set phone='"+phone+"' where id="+MainPro.id;
                 s.executeUpdate(exec3);
+            }else if(mode==4){
+                String exec4="update users set question='"+question+"' where id="+MainPro.id;
+                s.executeUpdate(exec4);
+            }else{
+                String exec5="update users set anwser='"+anwser+"' where id="+MainPro.id;
+                s.executeUpdate(exec5);
             }
         } catch (Exception e) {
             e.printStackTrace();
             exitcode="2";
         }
-        String[] result={exitcode,id,password,phone};
+        String[] result={exitcode,id,password,phone,question,anwser};
         return result;
     }
     public String[] Forgetpw(int mode,String username, String anwser, String password){
@@ -102,8 +110,7 @@ public class DBconnect {
                     String exec2="update users set password='"+password+"' where username='"+username+"'";
                     s.executeUpdate(exec2);
                 }else exitcode="2";//答案错误
-            }
-            
+            }   
         } catch (Exception e) {
            exitcode="3";
         }
