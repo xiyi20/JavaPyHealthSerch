@@ -58,9 +58,9 @@ public class DBconnect {
         String exitcode="0";
         String id="";
         String exec="select id,password,phone from users where username='"+username+"'";
-        String exec1="updata users set username='"+username+"' where id='"+MainPro.id+"'";
-        String exec2="updata users set password='"+password+"' where id='"+MainPro.id+"'";
-        String exec3="updata users set phone='"+phone+"' where id='"+MainPro.id+"'";
+        String exec1="update users set username='"+username+"' where id="+MainPro.id;
+        String exec2="update users set password='"+password+"' where id="+MainPro.id;
+        String exec3="update users set phone='"+phone+"' where id="+MainPro.id;
         try {
             Statement s=c.createStatement();
             if(mode==0){
@@ -78,10 +78,9 @@ public class DBconnect {
                 s.executeUpdate(exec3);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             exitcode="2";
         }
-
-
         String[] result={exitcode,id,password,phone};
         return result;
     }
