@@ -7,6 +7,8 @@ public class MainPro {
     public static String username;
     public static String userpassword;
     public static String userphone;
+    public static String userquestion;
+    public static String useranwser;
 
     public static String url;
     public static String name;
