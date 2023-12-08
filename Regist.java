@@ -8,7 +8,7 @@ class Regist {
         DBconnect d=new DBconnect();
         JFrame frame=new JFrame("用户注册");
 
-        JPanel bg=new Bgpanel().getbg(0, 7, 1);
+        JPanel bg=new Bgpanel().getbg(0, 11, 1);
 
         JPanel banner=new JPanel();
         banner.setOpaque(false);
@@ -53,6 +53,24 @@ class Regist {
         t8.setOpaque(false);
         p4.add(t7);p4.add(t8);
 
+        JPanel pwse1=new JPanel();
+        JLabel pw1=new JLabel("填写你的密保问题:");
+        pwse1.setOpaque(false);
+        JPanel pwse2=new JPanel();
+        JTextField pw2=new JTextField(20);
+        pw2.setOpaque(false);
+        pwse2.setOpaque(false);
+        JPanel pwse3=new JPanel();
+        JLabel pw3=new JLabel("填写你的密保答案:");
+        pwse3.setOpaque(false);
+        JPanel pwse4=new JPanel();
+        JTextField pw4=new JTextField(20);
+        pw4.setOpaque(false);
+        pwse4.setOpaque(false);
+        pwse1.add(pw1);pwse2.add(pw2);
+        pwse3.add(pw3);pwse4.add(pw4);
+
+
         Captcha px=new Captcha();
         px.setOpaque(false);
 		JPanel p5=new JPanel(new FlowLayout(2));
@@ -77,20 +95,22 @@ class Regist {
                 if (man.isSelected()) sex="男";
                 else sex="女";
                 String phone=t8.getText();
-                if (username.isEmpty()||password.isEmpty()||phone.isEmpty()||(!man.isSelected()&&!woman.isSelected())) {
+                String question=pw2.getText();
+                String anwser=pw4.getText();
+                if (username.isEmpty()||password.isEmpty()||phone.isEmpty()||(!man.isSelected()&&!woman.isSelected())||question.isEmpty()||anwser.isEmpty()){
                     JOptionPane.showMessageDialog(null,"检查是否空填!");
                 }
                 else{
-                    if (phone.length()!=11) {
-                        JOptionPane.showMessageDialog(null, "手机号格式不规范");
-                    }else{
+                    if(phone.length()!=11) JOptionPane.showMessageDialog(null, "手机号格式不规范");
+                    else if(question.length()>25) JOptionPane.showMessageDialog(null, "密保问题字数不能超过25");
+                    else{
                         try {
-                            Integer.parseInt(phone);
+                            Long.parseLong(phone);
                             if (!t10.getText().equals(px.captcha)) {
                                 JOptionPane.showMessageDialog(null, "验证码错误,请重试");
                                 px.repaint();
                             }else{
-                                int result=d.regist(username, password, sex, phone);
+                                int result=d.regist(username,password,sex,phone,question,anwser);
                                 if (result==0) {
                                     JOptionPane.showMessageDialog(null, "注册成功,请登录");
                                 }else if (result==1) {
@@ -118,10 +138,14 @@ class Regist {
         bg.add(p2);
         bg.add(p3);
         bg.add(p4);
+        bg.add(pwse1);
+        bg.add(pwse2);
+        bg.add(pwse3);
+        bg.add(pwse4);
         bg.add(py);
         bg.add(p6);
         frame.add(bg);
-        frame.setBounds(650,200,400, 400);
+        frame.setBounds(650,200,400, 500);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(3);
     }
