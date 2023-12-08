@@ -49,16 +49,18 @@ class Login {
                     if (result==0) {
                         JOptionPane.showMessageDialog(null,"登陆成功");
                         MainPro.username=name;
-                        String[] userinfo=d.usermodify(0,name,"","");
+                        String[] userinfo=d.usermodify(0,name,"","","","");
                         MainPro.id=Integer.parseInt(userinfo[1]);
                         MainPro.userpassword=userinfo[2];
                         MainPro.userphone=userinfo[3];
+                        MainPro.userquestion=userinfo[4];
+                        MainPro.useranwser=userinfo[5];
                         frame.dispose();
                         new UserHome();
                     }
                     else if (result==1) JOptionPane.showMessageDialog(null,"密码有误请重新填写");
                     else if (result==2) JOptionPane.showMessageDialog(null,"请先创建用户");
-                    else if (result==3) JOptionPane.showMessageDialog(null,"数据库有误,请重试");
+                    else JOptionPane.showMessageDialog(null,"数据库有误,请重试");
                 }
             }
         });
