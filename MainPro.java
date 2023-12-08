@@ -31,6 +31,6 @@ public class MainPro {
         } catch (Exception e) {
             System.out.println("找不到配置文件,或配置文件出错");
         }
-        new Login();
+        new Identity();
     }
 }
