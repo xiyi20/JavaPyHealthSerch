@@ -7,6 +7,7 @@ import javax.swing.border.TitledBorder;
 class UserHome{
     public UserHome(){
         Pyhandler ph=new Pyhandler();
+        DBconnect d=new DBconnect();
         JFrame frame=new JFrame("自主诊断应用");
         frame.setLayout(new BorderLayout());
         CardLayout card=new CardLayout();
@@ -79,7 +80,7 @@ class UserHome{
         JMenuItem m2a=new JMenuItem("信息修改");
         m2a.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                card.show(bg,"修改");
+                card.show(bg,"信息");
             }
         });
         JMenuItem m2b=new JMenuItem("查询历史");
@@ -342,6 +343,24 @@ class UserHome{
         }
         bg.add(p9,"其他");
 
+        JPanel p10x=new JPanel(new GridLayout(3, 1));
+        JPanel p10xa=new JPanel();
+        JLabel tips=new JLabel("");
+        p10xa.add(tips);
+        JPanel p10xb=new JPanel();
+        JTextField input=new JTextField(15);
+        p10xb.add(input);
+        JPanel p10xc=new JPanel();
+        JButton queren=new JButton("确认修改");
+        JButton fanhui=new JButton("返回");
+        fanhui.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(bg, "信息");
+            }
+        });
+        p10xc.add(queren);p10xc.add(fanhui);
+        p10x.add(p10xa);p10x.add(p10xb);p10x.add(p10xc);
+        bg.add(p10x,"修改");
 
         JPanel p10=new JPanel();
         p10.setLayout(new BoxLayout(p10, BoxLayout.Y_AXIS));
@@ -354,27 +373,80 @@ class UserHome{
         JTextField xianshi1=new JTextField(15);
         xianshi1.setEditable(false);xianshi1.setText(MainPro.username);
         JButton xiugai1=new JButton("修改");
+        xiugai1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                p10x.setBorder(new TitledBorder(null, "用户名修改", 4, 2, null, Color.BLUE));
+                tips.setText("请输入想修改的用户名:");
+                input.setText("");
+                card.show(bg, "修改");
+            }
+        });
         p10a.add(t2);p10a.add(xianshi1);p10a.add(xiugai1);
         JPanel p10b=new JPanel();
         JLabel t3=new JLabel("密码:");
         JTextField xianshi2=new JTextField(16);
-        xianshi2.setEditable(false);;xianshi2.setText(MainPro.userpassword);
+        xianshi2.setEditable(false);xianshi2.setText(MainPro.userpassword);
         JButton xiugai2=new JButton("修改");
+        xiugai2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                p10x.setBorder(new TitledBorder(null, "密码修改", 4, 2, null, Color.BLUE));
+                tips.setText("请输入想修改的密码:");
+                input.setText("");
+                card.show(bg, "修改");
+            }
+        });
         p10b.add(t3);p10b.add(xianshi2);p10b.add(xiugai2);
         JPanel p10c=new JPanel();
         JLabel t4=new JLabel("手机号:");
         JTextField xianshi3=new JTextField(15);
         xianshi3.setEditable(false);xianshi3.setText(MainPro.userphone);
         JButton xiugai3=new JButton("修改");
+        xiugai3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                p10x.setBorder(new TitledBorder(null, "手机号修改", 4, 2, null, Color.BLUE));
+                tips.setText("请输入想修改的手机号:");
+                input.setText("");
+                card.show(bg, "修改");
+            }
+        });
         p10c.add(t4);p10c.add(xianshi3);p10c.add(xiugai3);
         p10.add(t1);p10.add(p10a);p10.add(p10b);p10.add(p10c);
-        bg.add(p10,"修改");
+        bg.add(p10,"信息");
+        queren.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                if (tips.getText().contains("用户名")) {
+                    String name=input.getText();
+                    if(d.usermodify(1, name, null, null)[0].equals("0")){
+                        JOptionPane.showMessageDialog(null, "修改成功");
+                        MainPro.username=name;
+                        t1.setText("欢迎您,"+MainPro.username);
+                        xianshi1.setText(MainPro.username);
+                    }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
+                }else if(tips.getText().contains("密码")){
+                    String pw=input.getText();
+                    if (d.usermodify(2, null, pw, null)[0].equals("0")){
+                        JOptionPane.showMessageDialog(null, "修改成功");
+                        MainPro.userpassword=pw;
+                        xianshi2.setText(MainPro.userpassword);
+                    }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
+                }else{
+                    String phone=input.getText();
+                    if (d.usermodify(3, null, null, phone)[0].equals("0")){
+                        JOptionPane.showMessageDialog(null, "修改成功");
+                        MainPro.userphone=phone;
+                        xianshi3.setText(MainPro.userphone);
+                    }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
+                }
+            }
+        });
 
+        /////////////////////////////////////查询历史写这里
 
 
         JPanel py=new JPanel(new BorderLayout());
         py.setBorder(new TitledBorder(null, "查询结果", 4, 2,null,Color.blue));
         JTextArea tArea=new JTextArea(50,0);
+        tArea.setEditable(false);
         JPanel py1=new JPanel();
         JButton queding =new JButton("确定");
         queding.addActionListener(new ActionListener() {
