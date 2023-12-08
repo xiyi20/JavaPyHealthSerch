@@ -56,25 +56,58 @@ public class DBconnect {
     }
     public String[] usermodify(int mode,String username,String password,String phone){
         String exitcode="0";
-        String exec="select password,phone from users where username='"+username+"'";
-        String exec1="updata users set username='"+username+"'";
-        String exec2="updata users set password='"+password+"'";
-        String exec3="updata users set phone='"+phone+"'";
-        if (mode==0) {
-            try {
-                Statement s=c.createStatement();
+        String id="";
+        try {
+            Statement s=c.createStatement();
+            if(mode==0){
+                String exec="select id,password,phone from users where username='"+username+"'";
                 ResultSet r=s.executeQuery(exec);
                 if (r.next()) {
+                    id=r.getString("id");
                     password=r.getString("password");
                     phone=r.getString("phone");
                 }
-            } catch (Exception e) {
-                exitcode="2";
+            }else if(mode==1){
+                String exec1="update users set username='"+username+"' where id="+MainPro.id;
+                s.executeUpdate(exec1);
+            }else if(mode==2){
+                String exec2="update users set password='"+password+"' where id="+MainPro.id;
+                s.executeUpdate(exec2);
+            }else{
+                String exec3="update users set phone='"+phone+"' where id="+MainPro.id;
+                s.executeUpdate(exec3);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            exitcode="2";
         }
-
-
-        String[] result={exitcode,password,phone};
+        String[] result={exitcode,id,password,phone};
+        return result;
+    }
+    public String[] Forgetpw(int mode,String username, String anwser, String password){
+        String exitcode="0";
+        String question="";
+        String anwser_="";
+        try {
+            Statement s=c.createStatement();
+            if(mode==0){
+                String exec1="select question,anwser from users where username='"+username+"'";
+                ResultSet r=s.executeQuery(exec1);
+                if(r.next()){
+                    question=r.getString(1);
+                    anwser_=r.getString(2);
+                }else exitcode="1";//用户不存在
+            }else if(mode==1){
+                if(anwser.equals(MainPro.useranwser)){
+                    String exec2="update users set password='"+password+"' where username='"+username+"'";
+                    s.executeUpdate(exec2);
+                }else exitcode="2";//答案错误
+            }
+            
+        } catch (Exception e) {
+           exitcode="3";
+        }
+        String[] result={exitcode,question,anwser_};
         return result;
     }
     public int Forgetpw(String username, String anwser, String password2) {
