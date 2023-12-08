@@ -410,13 +410,42 @@ class UserHome{
             }
         });
         p10c.add(t4);p10c.add(xianshi3);p10c.add(xiugai3);
-        p10.add(t1);p10.add(p10a);p10.add(p10b);p10.add(p10c);
+        JPanel p10d=new JPanel();
+        JLabel t5=new JLabel("密保问题:");
+        JTextField xianshi4=new JTextField(15);
+        xianshi4.setEditable(false);xianshi4.setText(MainPro.userquestion);
+        JButton xiugai4=new JButton("修改");
+        xiugai4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                p10x.setBorder(new TitledBorder(null, "密保问题修改", 4, 2, null, Color.BLUE));
+                tips.setText("请输入想修改的密保问题:");
+                input.setText("");
+                card.show(bg, "修改");
+            }
+        });
+        p10d.add(t5);p10d.add(xianshi4);p10d.add(xiugai4);
+        JPanel p10e=new JPanel();
+        JLabel t6=new JLabel("密保答案:");
+        JTextField xianshi5=new JTextField(15);
+        xianshi5.setEditable(false);xianshi5.setText(MainPro.useranwser);
+        JButton xiugai5=new JButton("修改");
+        xiugai5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                p10x.setBorder(new TitledBorder(null, "密保答案修改", 4, 2, null, Color.BLUE));
+                tips.setText("请输入想修改的密保答案:");
+                input.setText("");
+                card.show(bg, "修改");
+            }
+        });
+        p10e.add(t6);p10e.add(xianshi5);p10e.add(xiugai5);
+        p10.add(t1);p10.add(p10a);p10.add(p10b);p10.add(p10c);p10.add(p10d);p10.add(p10e);
         bg.add(p10,"信息");
         queren.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                if (tips.getText().contains("用户名")) {
+                if (input.getText().isEmpty()) JOptionPane.showMessageDialog(null, "请检查是否空填");
+                else if (tips.getText().contains("用户名")) {
                     String name=input.getText();
-                    if(d.usermodify(1, name, null, null)[0].equals("0")){
+                    if(d.usermodify(1,name,null,null,null,null)[0].equals("0")){
                         JOptionPane.showMessageDialog(null, "修改成功");
                         MainPro.username=name;
                         t1.setText("欢迎您,"+MainPro.username);
@@ -424,17 +453,31 @@ class UserHome{
                     }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
                 }else if(tips.getText().contains("密码")){
                     String pw=input.getText();
-                    if (d.usermodify(2, null, pw, null)[0].equals("0")){
+                    if (d.usermodify(2,null,pw,null,null,null)[0].equals("0")){
                         JOptionPane.showMessageDialog(null, "修改成功");
                         MainPro.userpassword=pw;
                         xianshi2.setText(MainPro.userpassword);
                     }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
-                }else{
+                }else if(tips.getText().contains("手机号")){
                     String phone=input.getText();
-                    if (d.usermodify(3, null, null, phone)[0].equals("0")){
+                    if (d.usermodify(3,null,null,phone,null,null)[0].equals("0")){
                         JOptionPane.showMessageDialog(null, "修改成功");
                         MainPro.userphone=phone;
                         xianshi3.setText(MainPro.userphone);
+                    }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
+                }else if(tips.getText().contains("密保问题")){
+                    String question=input.getText();
+                    if (d.usermodify(4,null,null,null,question,null)[0].equals("0")){
+                        JOptionPane.showMessageDialog(null, "修改成功");
+                        MainPro.userquestion=question;
+                        xianshi4.setText(MainPro.userquestion);
+                    }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
+                }else {
+                    String anwser=input.getText();
+                    if (d.usermodify(5,null,null,null,null,anwser)[0].equals("0")){
+                        JOptionPane.showMessageDialog(null, "修改成功");
+                        MainPro.useranwser=anwser;
+                        xianshi5.setText(MainPro.useranwser);
                     }else JOptionPane.showMessageDialog(null, "修改失败,请重试");  
                 }
             }
@@ -444,7 +487,7 @@ class UserHome{
 
 
         JPanel py=new JPanel(new BorderLayout());
-        py.setBorder(new TitledBorder(null, "查询结果", 4, 2,null,Color.blue));
+        py.setBorder(new TitledBorder(null, "查询结果", 4, 2,null,Color.red));
         JTextArea tArea=new JTextArea(50,0);
         tArea.setEditable(false);
         JPanel py1=new JPanel();
