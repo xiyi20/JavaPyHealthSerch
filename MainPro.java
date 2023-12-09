@@ -29,7 +29,7 @@ public class MainPro {
             MainPro.bg1=properties.getProperty("bg.bg1");
             MainPro.bg2=properties.getProperty("bg.bg2");
         } catch (Exception e) {
-            System.out.println("找不到配置文件,或配置文件出错");
+            System.out.println("找不到配置文件config.properties,或配置文件出错");
         }
         new Identity();
     }
