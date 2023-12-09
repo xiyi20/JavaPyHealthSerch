@@ -45,7 +45,7 @@ class Login {
                 if (name.isEmpty()||password.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "请检查是否空填");
                 }else{
-                    int result=d.login(name, password);
+                    int result=d.login(0,name, password);
                     if (result==0) {
                         JOptionPane.showMessageDialog(null,"登陆成功");
                         MainPro.username=name;
@@ -78,9 +78,17 @@ class Login {
                 new Forgetpw();
             }
         });
-        p3.add(b1);
+        JButton b4=new JButton("返回");
+        b4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                frame.dispose();
+                new Identity();
+            }
+        });
         p3.add(b3);
+        p3.add(b1);
         p3.add(b2);
+        p3.add(b4);
 
         bg.add(banner);
         bg.add(p1);

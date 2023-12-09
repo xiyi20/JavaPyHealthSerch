@@ -19,7 +19,7 @@ public class MainPro {
     public static void main(String[] args) {
         try {
             Properties properties=new Properties();
-            FileInputStream fileInputStream=new FileInputStream("E:\\workContact\\JavaPyHealthSerch\\config.properties");
+            FileInputStream fileInputStream=new FileInputStream("git\\JavaPyHealthSerch\\config.properties");
             properties.load(fileInputStream);
             fileInputStream.close();
             MainPro.url=properties.getProperty("db.url");

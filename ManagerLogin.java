@@ -1,19 +1,13 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
+import javax.swing.*;
 import java.awt.event.*;
 
 class ManagerLogin {
     public ManagerLogin(){
         DBconnect d=new DBconnect();
-        JFrame frame=new JFrame("管理员登录界面");
+        JFrame frame=new JFrame("管理员登录");
         JPanel p1=new JPanel();
-        JPanel bg=new Bgpanel().getbg(0,4,1);
+        JPanel bg=new Bgpanel().getbg(0,3,1);
         p1.setOpaque(false);
         JLabel t1=new JLabel("账号：");
         t1.setOpaque(false);
@@ -41,30 +35,24 @@ class ManagerLogin {
                 if (name.isEmpty()||password.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "请检查是否空填");
                 }else{
-                    int result=d.login(name, password);
+                    int result=d.login(1,name, password);
                     if (result==0) {
                         JOptionPane.showMessageDialog(null,"登陆成功");
                         MainPro.username=name;
-                        String[] userinfo=d.usermodify(0,name,"","","","");
-                        MainPro.id=Integer.parseInt(userinfo[1]);
-                        MainPro.userpassword=userinfo[2];
-                        MainPro.userphone=userinfo[3];
-                        MainPro.userquestion=userinfo[4];
-                        MainPro.useranwser=userinfo[5];
                         frame.dispose();
-                        new UserHome();
+                        new ManagerHome();
                     }
                     else if (result==1) JOptionPane.showMessageDialog(null,"密码有误请重新填写");
-                    else if (result==2) JOptionPane.showMessageDialog(null,"请先创建用户");
+                    else if (result==2) JOptionPane.showMessageDialog(null,"该账户没有管理员权限");
                     else JOptionPane.showMessageDialog(null,"数据库有误,请重试");
                 }
             }
         });
-        JButton b3=new JButton("忘记密码");
+        JButton b3=new JButton("返回");
         b3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new Forgetpw();
+                new Identity();
             }
         });
         p3.add(b1);
@@ -75,12 +63,6 @@ class ManagerLogin {
         frame.add(bg);
         frame.setBounds(650,200,400, 400);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(3);
-
-
-
-        frame.setVisible(true);
-        frame.setBounds(650,200,400,400);
         frame.setDefaultCloseOperation(3);
     }
 }
