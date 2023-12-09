@@ -19,7 +19,7 @@ public class MainPro {
     public static void main(String[] args) {
         try {
             Properties properties=new Properties();
-            FileInputStream fileInputStream=new FileInputStream("git\\JavaPyHealthSerch\\config.properties");
+            FileInputStream fileInputStream=new FileInputStream("E:\\workContact\\JavaPyHealthSerch\\config.properties");
             properties.load(fileInputStream);
             fileInputStream.close();
             MainPro.url=properties.getProperty("db.url");
@@ -31,6 +31,6 @@ public class MainPro {
         } catch (Exception e) {
             System.out.println("找不到配置文件,或配置文件出错");
         }
-        new Login();
+        new Identity();
     }
 }
