@@ -15,9 +15,11 @@ public class DBconnect {
             e.printStackTrace();
         }
     }
-    public int login(String name,String pw){
+    public int login(int mode,String name,String pw){
         int exitcode=0;
-        String exec="select password from users where username='"+name+"'";
+        String exec="";
+        if (mode==0) exec="select password from users where username='"+name+"'";
+        else exec="select password from users_r where rootname='"+name+"'";
         try {
             Statement s=c.createStatement();
             ResultSet r=s.executeQuery(exec);
@@ -116,5 +118,37 @@ public class DBconnect {
         }
         String[] result={exitcode,question,anwser_};
         return result;
+    }
+    public String[][] history(int mode,String content,String time){
+        String[][] table={};
+        try {
+            Statement s=c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            if(mode==0){
+                String exec1=String.format("insert into history values (%d,'%s','%s')",MainPro.id,content,time);
+                s.executeUpdate(exec1);
+            }else if(mode==1){
+                String exec2="select * from history where id="+MainPro.id;
+                ResultSet r=s.executeQuery(exec2);
+                int col=3;
+                int row=0;
+                for(;r.next();row++);
+                table=new String[row][col];
+                r.beforeFirst();
+                int y=0;
+                while(r.next()){
+                    String[] data={r.getString(1),r.getString(2),r.getString(3)};
+                    for(int x=0;x<col;x++){
+                        table[y][x]=data[x];
+                    }
+                    y++;
+                }
+            }else{
+                String exec3="delete from history where id="+MainPro.id;
+                s.executeUpdate(exec3);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return table;
     }
 }

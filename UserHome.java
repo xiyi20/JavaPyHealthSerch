@@ -1,13 +1,17 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.*;
+import java.time.LocalDateTime;
+import java.time.format.*;
 import javax.swing.border.TitledBorder;
 
 class UserHome{
     public UserHome(){
         Pyhandler ph=new Pyhandler();
         DBconnect d=new DBconnect();
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         JFrame frame=new JFrame("自主诊断应用");
         frame.setLayout(new BorderLayout());
         CardLayout card=new CardLayout();
@@ -84,6 +88,11 @@ class UserHome{
             }
         });
         JMenuItem m2b=new JMenuItem("查询历史");
+        m2b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                card.show(bg, "历史");
+            }
+        });
         m2.add(m2a);m2.add(m2b);
 
 
@@ -484,7 +493,19 @@ class UserHome{
         });
 
         /////////////////////////////////////查询历史写这里
-
+        JPanel history=new JPanel();
+        history.setBorder(new TitledBorder(null, "查询历史", 4, 2, null, Color.blue));
+        String[] tittle={"id","病状","日期"};
+        DefaultTableModel table_s=new DefaultTableModel(d.history(1,null,null), tittle);
+        JTable table=new JTable(table_s);
+        TableColumnModel columnmodel1=table.getColumnModel();
+        columnmodel1.getColumn(0).setPreferredWidth(30);
+        columnmodel1.getColumn(1).setPreferredWidth(450);
+        columnmodel1.getColumn(2).setPreferredWidth(120);
+        JScrollPane scroll=new JScrollPane(table);
+        scroll.setPreferredSize(new Dimension(600,300));
+        history.add(scroll);
+        bg.add(history,"历史");
 
         JPanel py=new JPanel(new BorderLayout());
         py.setBorder(new TitledBorder(null, "查询结果", 4, 2,null,Color.red));
@@ -552,6 +573,13 @@ class UserHome{
                 }
                 int code=JOptionPane.showConfirmDialog(null,result_name+"确定查询?","您已选择:",JOptionPane.YES_NO_OPTION);
                 if (code==JOptionPane.YES_OPTION) {
+                    LocalDateTime now=LocalDateTime.now();
+                    String time=now.format(formatter);
+                    String content=result_name.replace("\n", " ");
+                    d.history(0,content,time);
+                    DefaultTableModel model=(DefaultTableModel) table.getModel();
+                    Object[] data={MainPro.id,content,time};
+                    model.addRow(data);
                     tArea.setText("");
                     tArea.setText(ph.getdata(result));
                 }
@@ -589,7 +617,15 @@ class UserHome{
                 }
             }
         });
-        py1.add(queding);py1.add(quxiao);
+        JButton qingkong=new JButton("清空历史");
+        qingkong.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                d.history(3, null, null);
+                DefaultTableModel model=(DefaultTableModel) table.getModel();
+                model.setRowCount(0);
+            }
+        });
+        py1.add(queding);py1.add(quxiao);py1.add(qingkong);
         ScrollPane areacroll=new ScrollPane();
         areacroll.add(tArea);
         py.setPreferredSize(new Dimension(0, 300));
