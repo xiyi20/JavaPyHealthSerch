@@ -151,4 +151,44 @@ public class DBconnect {
         }
         return table;
     }
+    public String[][] userinfo(){
+        String[][] result={};
+        int col=5;
+        int row=0;
+        try {
+            String exec="select id,username,password,sex,phone from users";
+            Statement s=c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet r=s.executeQuery(exec);
+            for(;r.next();row++);
+            result=new String[row][col];
+            int y=0;
+            r.beforeFirst();
+            while (r.next()) {
+                String id=r.getString("id");
+                String username=r.getString("username");
+                String password=r.getString("password");
+                String sex=r.getString("sex");
+                String phone=r.getString("phone");
+                String[] data={id,username,password,sex,phone};
+                for(int i=0;i<col;i++){
+                    result[y][i]=data[i];  
+                }
+                y++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+public int shuju(int id,String name,String sex,String pw,String phone){
+    int exitcode=0;
+    try {
+        String exe="UPDATE users SET username='"+name+"',sex='"+sex+"',password='"+pw+"',phone='"+phone+"' where id="+id; 
+        Statement s=c.createStatement();
+        s.executeUpdate(exe);
+    } catch (Exception e) {
+        exitcode=1;
+    }
+    return exitcode;
+}
 }
