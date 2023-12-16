@@ -12,7 +12,7 @@ class Forgetpw{
         frame.setBounds(650,200,400,400);
 
         JPanel p1=new JPanel();
-        JLabel l1=new JLabel("用户名：");
+        JLabel l1=new JLabel("用户名:");
         JTextField textField1=new JTextField(10);
         JButton yanzhen=new JButton("验证");
         p1.add(l1);
@@ -20,7 +20,7 @@ class Forgetpw{
         p1.add(yanzhen);
 
         JPanel p2=new JPanel();
-        JLabel l2=new JLabel("新密码：");
+        JLabel l2=new JLabel("新密码:");
         JTextField textField2=new JTextField(15);
         p2.add(l2);
         p2.add(textField2);

@@ -19,23 +19,21 @@ class Regist {
 
         JPanel p1=new JPanel();
         p1.setOpaque(false);
-        JLabel t1=new JLabel("账号：");
+        JLabel t1=new JLabel("账号:");
         t1.setOpaque(false);
         JTextField t2=new JTextField(15);
-        t2.setOpaque(false);
         p1.add(t1);p1.add(t2);
 
         JPanel p2=new JPanel();
         p2.setOpaque(false);
-        JLabel t3=new JLabel("密码：");
+        JLabel t3=new JLabel("密码:");
         t3.setOpaque(false);
         JTextField t4=new JPasswordField(15);
-        t4.setOpaque(false);
         p2.add(t3);p2.add(t4);
 
         JPanel p3=new JPanel();
         p3.setOpaque(false);
-        JLabel t5=new JLabel("性别：");
+        JLabel t5=new JLabel("性别:");
         t5.setOpaque(false);
         ButtonGroup buttonGroup=new ButtonGroup();
         JRadioButton man=new JRadioButton("男");
@@ -47,10 +45,8 @@ class Regist {
 
         JPanel p4=new JPanel();
         p4.setOpaque(false);
-        JLabel t7=new JLabel("手机号：");
-        t7.setOpaque(false);
+        JLabel t7=new JLabel("手机号:");
         JTextField t8=new JTextField(15);
-        t8.setOpaque(false);
         p4.add(t7);p4.add(t8);
 
         JPanel pwse1=new JPanel();
@@ -58,14 +54,12 @@ class Regist {
         pwse1.setOpaque(false);
         JPanel pwse2=new JPanel();
         JTextField pw2=new JTextField(20);
-        pw2.setOpaque(false);
         pwse2.setOpaque(false);
         JPanel pwse3=new JPanel();
         JLabel pw3=new JLabel("填写你的密保答案:");
         pwse3.setOpaque(false);
         JPanel pwse4=new JPanel();
         JTextField pw4=new JTextField(20);
-        pw4.setOpaque(false);
         pwse4.setOpaque(false);
         pwse1.add(pw1);pwse2.add(pw2);
         pwse3.add(pw3);pwse4.add(pw4);
@@ -75,10 +69,9 @@ class Regist {
         px.setOpaque(false);
 		JPanel p5=new JPanel(new FlowLayout(2));
         p5.setOpaque(false);
-		JLabel t9=new JLabel("验证码：");
+		JLabel t9=new JLabel("验证码:");
         t9.setOpaque(false);
 		JTextField t10=new JTextField(4);
-        t10.setOpaque(false);
 		p5.add(t9);p5.add(t10);
 		JPanel py=new JPanel(new GridLayout(1, 2));
         py.setOpaque(false);
@@ -128,7 +121,7 @@ class Regist {
         b2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new Login();//////////////////////////////////////////////////
+                new Login();
             }
         });
         p6.add(b1);p6.add(b2);

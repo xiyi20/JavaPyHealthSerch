@@ -19,19 +19,17 @@ class Login {
 
         JPanel p1=new JPanel();
         p1.setOpaque(false);
-        JLabel t1=new JLabel("账号：");
+        JLabel t1=new JLabel("账号:");
         t1.setOpaque(false);
         JTextField textField1=new JTextField(15);
-        textField1.setOpaque(false);
         p1.add(t1);
         p1.add(textField1);
 
         JPanel p2=new JPanel();
         p2.setOpaque(false);
-        JLabel t2=new JLabel("密码：");
+        JLabel t2=new JLabel("密码:");
         t2.setOpaque(false);
         JTextField textField2=new JPasswordField(15);
-        textField2.setOpaque(false);
         p2.add(t2);
         p2.add(textField2);
 

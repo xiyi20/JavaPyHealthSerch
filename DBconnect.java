@@ -151,13 +151,15 @@ public class DBconnect {
         }
         return table;
     }
-    public String[][] userinfo(){
+    public String[][] userinfo(int mode,String name){
         String[][] result={};
         int col=5;
         int row=0;
         try {
-            String exec="select id,username,password,sex,phone from users";
+            String exec="";
             Statement s=c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            if(mode==0) exec="select id,username,password,sex,phone from users";
+            else if(mode==1) exec="select id,username,password,sex,phone from users where username='"+name+"'";
             ResultSet r=s.executeQuery(exec);
             for(;r.next();row++);
             result=new String[row][col];
@@ -180,15 +182,15 @@ public class DBconnect {
         }
         return result;
     }
-public int shuju(int id,String name,String sex,String pw,String phone){
-    int exitcode=0;
-    try {
-        String exe="UPDATE users SET username='"+name+"',sex='"+sex+"',password='"+pw+"',phone='"+phone+"' where id="+id; 
-        Statement s=c.createStatement();
-        s.executeUpdate(exe);
-    } catch (Exception e) {
-        exitcode=1;
+    public int shuju(int id,String name,String sex,String pw,String phone){
+        int exitcode=0;
+        try {
+            String exec="UPDATE users SET username='"+name+"',sex='"+sex+"',password='"+pw+"',phone='"+phone+"' where id="+id; 
+            Statement s=c.createStatement();
+            s.executeUpdate(exec);
+        } catch (Exception e) {
+            exitcode=1;
+        }
+        return exitcode;
     }
-    return exitcode;
-}
 }
