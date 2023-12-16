@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class MainPro {
     public static int id;
@@ -31,7 +32,7 @@ public class MainPro {
             MainPro.bg2=properties.getProperty("bg.bg2");
             MainPro.pysrc=properties.getProperty("py.src");
         } catch (Exception e) {
-            System.out.println("找不到配置文件config.properties,或配置文件出错");
+            JOptionPane.showMessageDialog(null,"找不到配置文件config.properties,或配置文件出错");
         }
         new Identity();
     }
