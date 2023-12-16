@@ -4,11 +4,7 @@ class Pyhandler {
     public Pyhandler(){}
     public String getdata(String sendin){
         try {
-            ProcessBuilder pb;
-            int code=MainPro.pycode;
-            if (code==0) pb=new ProcessBuilder("python","git\\JavaPyHealthSerch\\getdata.py");
-            else if(code==1) pb=new ProcessBuilder("python","getdata.py");
-            else pb=new ProcessBuilder("python","E:\\workContact\\JavaPyHealthSerch\\getdata.py");
+            ProcessBuilder pb=new ProcessBuilder("python",MainPro.pysrc);
             Process process = pb.start();
             // 获取进程的输入流和输出流
             InputStream inputStream = process.getInputStream();
