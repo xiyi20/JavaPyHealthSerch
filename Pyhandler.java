@@ -4,13 +4,13 @@ class Pyhandler {
     public Pyhandler(){}
     public String getdata(String sendin){
         try {
-            ProcessBuilder pb=new ProcessBuilder("python",MainPro.pysrc);
-            Process process = pb.start();
+            ProcessBuilder pb=new ProcessBuilder("getdata\\getdata.exe");
+            Process process=pb.start();
             // 获取进程的输入流和输出流
-            InputStream inputStream = process.getInputStream();
-            OutputStream outputStream = process.getOutputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"gbk"));
-            PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream));
+            InputStream inputStream=process.getInputStream();
+            OutputStream outputStream=process.getOutputStream();
+            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream,"gbk"));
+            PrintWriter writer=new PrintWriter(new OutputStreamWriter(outputStream));
  
             writer.println(sendin);
             writer.flush();

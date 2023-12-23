@@ -11,6 +11,7 @@ class UserHome{
     public UserHome(){
         Pyhandler ph=new Pyhandler();
         DBconnect d=new DBconnect();
+        Bgpanel b=new Bgpanel();
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         JFrame frame=new JFrame("自主诊断应用");
         frame.setLayout(new BorderLayout());
@@ -371,7 +372,7 @@ class UserHome{
         p10x.add(p10xa);p10x.add(p10xb);p10x.add(p10xc);
         bg.add(p10x,"修改");
 
-        JPanel p10=new JPanel();
+        JPanel p10=b.getbg(1, 1, 1);
         p10.setLayout(new BoxLayout(p10, BoxLayout.Y_AXIS));
         p10.setBorder(new TitledBorder(null, "信息修改", 4, 2, null,Color.BLUE));
         JLabel t1=new JLabel("欢迎您,"+MainPro.username);
@@ -447,7 +448,12 @@ class UserHome{
             }
         });
         p10e.add(t6);p10e.add(xianshi5);p10e.add(xiugai5);
-        p10.add(t1);p10.add(p10a);p10.add(p10b);p10.add(p10c);p10.add(p10d);p10.add(p10e);
+        p10.add(t1);
+        JPanel[] p10_all={p10a,p10b,p10c,p10d,p10e};
+        for(int i=0;i<5;i++){
+            p10_all[i].setOpaque(false);
+            p10.add(p10_all[i]);
+        }
         bg.add(p10,"信息");
         queren.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -493,7 +499,8 @@ class UserHome{
         });
 
         /////////////////////////////////////查询历史写这里
-        JPanel history=new JPanel();
+        JPanel history=b.getbg(1, 1, 1);
+        history.setLayout(new FlowLayout());
         history.setBorder(new TitledBorder(null, "查询历史", 4, 2, null, Color.blue));
         String[] tittle={"id","病状","日期"};
         DefaultTableModel table_s=new DefaultTableModel(d.history(1,null,null), tittle);
