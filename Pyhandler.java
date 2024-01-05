@@ -4,7 +4,7 @@ class Pyhandler {
     public Pyhandler(){}
     public String getdata(String sendin){
         try {
-            ProcessBuilder pb=new ProcessBuilder("getdata\\getdata.exe");
+            ProcessBuilder pb=new ProcessBuilder("git\\JavaPyHealthSerch\\getdata\\getdata.exe");
             Process process=pb.start();
             // 获取进程的输入流和输出流
             InputStream inputStream=process.getInputStream();
@@ -17,9 +17,9 @@ class Pyhandler {
             
             // 读取python的输出
             String line;String res="";
-            int exitCode = process.waitFor();
+            int exitCode=process.waitFor();
             int flag=1;
-            while ((line = reader.readLine())!=null) {
+            while ((line=reader.readLine())!=null) {
                 if(flag%2==0)res+=line+"\n\n";
                 else res+=line+"\n";
                 flag++;
